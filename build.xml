@@ -10,8 +10,6 @@
         <echo message=" jar        --> generates the ./lib/ringo.jar file"/>
         <echo message=" test       --> run JUnit and RingoJS tests"/>
         <echo message=" apidocs    --> generates the API docs"/>
-        <echo message=" package    --> creates RingoJS distribution"/>
-        <echo message=" dpkg       --> creates RingoJS debian package"/>
         <echo message=" clean      --> clean up compiled resources"/>
     </target>
 
@@ -19,9 +17,6 @@
     <!-- Initializes some variables                                          -->
     <!-- =================================================================== -->
     <target name="init">
-        <property name="project" value="ringojs"/>
-        <property name="version" value="0.5"/>
-
         <property name="home" value="."/>
 
         <property name="src" value="${home}/src"/>
@@ -124,37 +119,6 @@
                  <classpath refid="classpath"/>
         </javadoc>
         <echo message="Javascript documentation generated in docs/core/rhinodoc.js"/>
-    </target>
-
-    <!-- =================================================================== -->
-    <!-- Create zipped files for distribution                                -->
-    <!-- =================================================================== -->
-    <target name="package" depends="jar,apidocs,test">
-        <zip zipfile="../${project}-${version}.zip">
-            <zipfileset dir="${home}" prefix="${project}-${version}"
-             excludes="build/**,*.zip,*.o,*.tar,*.tar.gz,.*/**" />
-        </zip>
-        <tar tarfile="../${project}-${version}.tar">
-            <tarfileset dir="${home}" prefix="${project}-${version}"
-             filemode="755" includes="bin/ringo,bin/ringo-admin,bin/ringo-web,bin/narwhal" />
-            <tarfileset dir="${home}" prefix="${project}-${version}"
-             excludes="bin/ringo,bin/ringo-admin,bin/ringo-web,bin/narwhal,build/**,*.zip,*.o,*.tar,*.tar.gz,.*/**" />
-        </tar>
-        <gzip src="../${project}-${version}.tar" destfile="../${project}-${version}.tar.gz"/>
-        <delete file="../${project}-${version}.tar"/>
-    </target>
-
-    <!-- =================================================================== -->
-    <!-- Create a debian package                                             -->
-    <!-- =================================================================== -->
-    <target name="dpkg">
-        <exec executable="dpkg-buildpackage">
-            <arg value="-rfakeroot"/>
-            <arg value="-b"/>
-        </exec>
-        <exec executable="dh_clean">
-            <arg value="debian/stamp-ant-build"/>
-        </exec>
     </target>
 
     <!-- =================================================================== -->

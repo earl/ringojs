@@ -1,0 +1,11 @@
+run.jar /usr/share/ringojs/
+lib/ /usr/share/ringojs/
+modules/ /usr/share/ringojs/
+apps/appengine/ /usr/share/ringojs/apps/
+apps/demo/ /usr/share/ringojs/apps/
+apps/jsdoc/ /usr/share/ringojs/apps/
+apps/jsgi/ /usr/share/ringojs/apps/
+apps/skeleton/ /usr/share/ringojs/apps/
+apps/storage/ /usr/share/ringojs/apps/
+test/ /usr/share/ringojs/
+dist/debian/usr/bin/ringo /usr/bin/

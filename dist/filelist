@@ -1,0 +1,25 @@
+# always excluded files first
+- .*
+- *~
+# explicit list of includes next
++ LICENSE.txt
++ README.txt
++ build.xml
++ run.jar
++ apps/
++ apps/appengine/***
++ apps/demo/***
++ apps/jsdoc/***
++ apps/jsgi/***
++ apps/skeleton/***
++ apps/storage/***
++ bin/***
++ docs/***
++ lib/***
++ modules/***
++ packages/
++ packages/namespace-skeleton/***
++ src/***
++ test/***
+# exclude everything else
+- *
